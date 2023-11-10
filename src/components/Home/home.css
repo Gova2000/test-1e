@@ -1,0 +1,11 @@
+.homebg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-family: roboto;
+}
+.h1 {
+  color: #2563eb;
+}
