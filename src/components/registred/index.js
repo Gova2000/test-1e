@@ -14,6 +14,7 @@ const Register = () => (
       <img
         src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
         alt="meetup"
+          
       />
     </div>
   </div>
