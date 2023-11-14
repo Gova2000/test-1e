@@ -1,5 +1,3 @@
-/* eslint-disable import/no-named-as-default-member */
-
 import {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import Header from '../header/head'
@@ -30,40 +28,36 @@ const topicsList = [
 ]
 
 class Login extends Component {
-  state = {input: '', option: topicsList[0].displayText, tog: false}
+  state = {textinput: '', option: topicsList[0].displayText, tog: false}
 
-  get = event => {
-    event.preventDefault()
-    const {input} = this.state
-    const {history} = this.props
-
-    if (input !== '') {
-      this.setState({tog: false})
-      history.replace('/')
-    } else {
-      this.setState({tog: true})
-    }
+  input1 = e => {
+    this.setState({textinput: e.target.value})
   }
 
-  
-
   render() {
-    const {tog, input, option} = this.state
+    const {tog, textinput, option} = this.state
 
-    
+    return (
       <CartContext.Consumer>
-  {value =>{
+        {value => {
+          const {Add} = value
 
-    const { Add, input } = value;
-    
+          const get = event => {
+            event.preventDefault()
 
-          const input1 = e => {
-         const newInput = e.target.value;
-            this.setState({ input: newInput });
-            Add(newInput);
-                }
+            const {history} = this.props
 
-          return (<div className="main">
+            if (textinput === '') {
+              this.setState({tog: true})
+            } else {
+              this.setState({tog: false}, Add(textinput, option))
+
+              history.replace('/')
+            }
+          }
+
+          return (
+            <div className="main">
               <Header />
               <div className="row">
                 <div className="imgdiv">
@@ -80,9 +74,10 @@ class Login extends Component {
                     <div className="input">
                       <input
                         type="text"
+                        value={textinput}
                         placeholder="Your name"
                         id="input"
-                        onChange={input1}
+                        onChange={this.input1}
                       />
                     </div>
                   </div>
@@ -104,7 +99,7 @@ class Login extends Component {
                       </select>
                     </div>
                   </div>
-                  <button type="submit" onClick={this.get}>
+                  <button type="submit" onClick={get}>
                     Register Now
                   </button>
                   {tog && <p className="p">Please enter your name</p>}
@@ -112,12 +107,9 @@ class Login extends Component {
               </div>
             </div>
           )
-
-          }
-          }
-        
+        }}
       </CartContext.Consumer>
-    
+    )
   }
 }
 
