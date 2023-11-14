@@ -1,4 +1,6 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-named-as-default-member */
+
 import {Component} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import Home from './components/Home/home'
@@ -12,17 +14,17 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {input: ''}
+  state = {input: '', optionName: ''}
 
-  Add = put => {
-    this.setState({input: put})
+  Add = (put, opt) => {
+    this.setState({input: put, optionName: opt})
   }
 
   render() {
-    const {input} = this.state
+    const {input, optionName} = this.state
 
     return (
-      <CartContext.Provider value={{input, Add: this.Add}}>
+      <CartContext.Provider value={{input, optionName, Add: this.Add}}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Login} />
@@ -36,3 +38,4 @@ class App extends Component {
 }
 
 export default App
+
