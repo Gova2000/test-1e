@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Context = React.createContext({
+const CartContext = React.createContext({
   input: '',
+  optionName: '',
+  Add: () => {},
 })
 
-export default Context
+export default CartContext
