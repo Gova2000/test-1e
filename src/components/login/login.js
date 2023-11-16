@@ -92,7 +92,7 @@ class Login extends Component {
                         }}
                       >
                         {topicsList.map(each => (
-                          <option key={each.id} value={each.id}>
+                          <option key={each.id} value={each.displayText}>
                             {each.displayText}
                           </option>
                         ))}
